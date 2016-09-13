@@ -33,10 +33,6 @@ module.exports = db.define('product', {
   photo: {
     type: Sequelize.STRING
   },
-  quantity: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
   featured: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
