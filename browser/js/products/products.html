@@ -1,3 +1,13 @@
-<section id="products">
-	<p> this is the product view </p>
+<section class="products">
+	<div class="container">
+		<div class="col-sm-4" ng-repeat="product in products">
+				<div class="thumbnail">
+					<img src="{{product.photo}}" class="portrait">
+				</div>
+				<a ui-sref="product({id: product.id})">{{product.name}}</a>
+				<p class="preview">{{product.preview}}</p>
+				<p>Price: {{product.price | currency}}</p>
+				<button type="button" class="add-to-cart btn btn-success" ng-click="addToCart(product)">add to cart</button>
+		</div>
+	</div>
 </section>

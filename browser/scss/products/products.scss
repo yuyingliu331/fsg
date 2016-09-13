@@ -1,0 +1,43 @@
+.products {
+
+	.container {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		justify-content: center;
+	}
+
+	.col-sm-4 {
+		display: inline-block;
+		max-width: 30%;
+	}
+
+	.thumbnail {
+	  position: relative;
+	  width: 300px;
+	  height: 300px;
+	  overflow: hidden;
+	}
+
+	.thumbnail > img {
+	  position: absolute;
+	  left: -1000%;
+	  top: -1000%;
+	  bottom: -1000%;
+	  right: -1000%;
+	  margin: auto;
+	  min-height: 100%;
+	  min-width: 100%;
+	}
+
+	.thumbnail img.portrait {
+	  width: auto;
+	  height: auto;
+	}
+
+	.preview {
+		font-size: 12px;
+		color: #777777;
+	}
+
+}
