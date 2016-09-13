@@ -43,7 +43,7 @@ module.exports = db.define('product', {
   }
 },{
   getterMethods: {
-    preview: function() { return this.description.split(0,26)}
+    preview: function() { return this.description.split(0,40) + "..." }
   }
   //virtual to put price into monetary form?
 }
