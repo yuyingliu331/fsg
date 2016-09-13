@@ -9,9 +9,6 @@ module.exports = db.define('reviews', {
   },
   text: {
     type: Sequelize.TEXT,
-    validate: {
-      min: 25// this is not going to work, for numeric values?
-    }
   },
   stars: {
     type: Sequelize.INTEGER,

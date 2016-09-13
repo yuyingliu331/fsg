@@ -24,9 +24,9 @@ module.exports = db.define('product', {
           arrayOfCategories = value.split(',').map(function (s) {
               return s.trim();
           });
-          this.setDataValue('tags', arrayOfCategories);
+          this.setDataValue('category', arrayOfCategories);
       } else {
-          this.setDataValue('tags', value);
+          this.setDataValue('category', value);
       }
     }
   },
