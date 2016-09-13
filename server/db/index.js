@@ -15,12 +15,7 @@ var Review = require('./models/reviews');
 
 Order.belongsTo(User);
 Cart.belongsTo(User);
-Cart.hasMany(Products);
+Cart.hasMany(Product);
 Payment.belongsTo(Order);
 Review.belongsTo(User);
 Review.belongsTo(Product);
-
-
-
-
-
