@@ -1,5 +1,4 @@
 'use strict';
-var _ = require('lodash');
 var Sequelize = require('sequelize');
 
 var db = require('../_db');
@@ -17,6 +16,6 @@ module.exports = db.define('payment', {
 		type: Sequelize.TEXT
 	},
 	expirationDate: {
-		typoe: Sequelize.STRING
+		type: Sequelize.STRING
 	}
 });

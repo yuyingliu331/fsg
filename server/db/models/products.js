@@ -21,8 +21,8 @@ module.exports = db.define('product', {
     set: function (value) {
       var arrayOfCategories;
       if (typeof value === 'string') {
-          arrayOfCategories = value.split(',').map(function (s) {
-              return s.trim();
+          arrayOfCategories = value.split(',').map(function (str) {
+              return str.trim();
           });
           this.setDataValue('category', arrayOfCategories);
       } else {
@@ -37,9 +37,9 @@ module.exports = db.define('product', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   }
-},{
+}, {
   getterMethods: {
-    preview: function() { return this.description.split(0,40) + "..." }
+    preview: function() { return this.description.split(0, 40) + '...' }
   }
   //virtual to put price into monetary form?
 }
