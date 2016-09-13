@@ -17,7 +17,7 @@ module.exports = db.define('product', {
     allowNull: false
   },
   category: {
-    type: Sequelize.ARRAY,
+    type: Sequelize.ARRAY(Sequelize.STRING),
     set: function (value) {
       var arrayOfCategories;
       if (typeof value === 'string') {
@@ -42,5 +42,4 @@ module.exports = db.define('product', {
     preview: function() { return this.description.split(0, 40) + '...' }
   }
   //virtual to put price into monetary form?
-}
-)
+})
