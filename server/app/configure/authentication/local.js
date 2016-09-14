@@ -6,7 +6,6 @@ module.exports = function (app, db) {
 
     var User = db.model('user');
 
-
     // When passport.authenticate('local') is used, this function will receive
     // the email and password to run the actual authentication logic.
     var strategyFn = function (email, password, done) {

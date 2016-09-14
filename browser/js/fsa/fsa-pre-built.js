@@ -86,6 +86,16 @@
 
         };
 
+        this.signup = function(credentials){
+            return $http.post('/signup', credentials)
+                .then(onSuccessfulLogin)
+                .catch(function() {
+                    return $q.reject({ message: 'Signup was unsuccessful.'});
+                });
+        };
+
+        //AFTER LUNCH BUILD SIGNUP BACKEND!!!!
+
         this.login = function (credentials) {
             return $http.post('/login', credentials)
                 .then(onSuccessfulLogin)

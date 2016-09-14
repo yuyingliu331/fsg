@@ -1,11 +1,8 @@
-app.controller('CreateUser', function($scope, Users){
+app.controller('CreateUser', function($scope, AuthService, $state){
       $scope.createUser = function(userData){
-      	Users.createUser(userData)
-      	.then(function(newUser){
-      		$state.go('home');
-      	// 	$state.go('userProfile', {id: newUser.id})
-      	// ^ once we also set up user profile view
-      	})
-
-})
+        AuthService.signup(userData)
+        .then( function(){
+          $state.go('home')
+        })
+      }
 })
