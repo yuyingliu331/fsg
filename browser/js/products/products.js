@@ -32,10 +32,33 @@ app.controller('ProductsCtrl', function($scope, ProductsFactory) {
 		$scope.products = products;
 	});
 
+	$scope.category = "default";
+
 	$scope.addToCart = function(product) {
 		ProductsFactory.addToCart(product)
 		.then(function(product) {
 			alert('you added it.');
 		});
 	}
+
+	$scope.categoryFilter = function(product) {
+		if ($scope.category == "default" || $scope.category == "show all") {
+			return true;
+		}
+		else {
+			for (var i = 0; i < product.category.length; i++) {
+				if (product.category[i] == $scope.category) {
+					return true;
+				}
+			}
+			return false;
+		}
+	};
+
+	$scope.setCategory = function(selected) {
+		$scope.category = selected;
+	}
+
+	$scope.categories = ['show all', 'fear', 'anxiety', 'everyday experiences', 'sexual tension', 'social', 'adventurous', 'happy', 'nostalgia', 'romance', 'sadness', 'surprise']
+
 });

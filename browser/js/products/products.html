@@ -1,6 +1,10 @@
 <section class="products">
+	<form name="filterForm">
+		<center><h2>Filter by Category: </h2> <select ng-options="category for category in categories" ng-model="selected"></select>
+		<button type="submit" class="btn btn-success" ng-click="setCategory(selected)">filter</button></center><br>
+	</form>
 	<div class="container">
-		<div class="col-sm-4" ng-repeat="product in products">
+		<div class="col-sm-4" ng-repeat="product in products | filter:categoryFilter">
 				<div class="thumbnail">
 					<img src="{{product.photo}}" class="portrait">
 				</div>
