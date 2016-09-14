@@ -43,7 +43,7 @@ var seedProducts = function () {
     {
         name: 'Southwest Vision Quest',
         price: 3000,
-        description: 'Remember the journey of a life time. Explore the American southwest on a solitarity quest for knowledge and inner peace. Experience the hardships of true wilderness survival in some of the most unforgiving terrain. With only what you carry on your back and what the land provides, you will survive for five trecherous days. Be pushed to your limit and come out as a stronger person from the experience.',
+        description: 'Remember the journey of a life time. Explore the American southwest on a solitarity quest for knowledge and inner peace. Experience the hardships of true wilderness survival in some of the most unforgiving terrain. With only what you carry on your back and what the land provides, you will survive for five treacherous days. Be pushed to your limit and come out as a stronger person from the experience.',
         category: ['adventurous', 'happy'],
         photo: 'https://static.pexels.com/photos/119650/pexels-photo-119650-large.jpeg',
         featured: false
@@ -82,7 +82,7 @@ var seedProducts = function () {
     },
     {
         name: 'Near-Death Experience: Too Many Teabags',
-        price: 400,
+        price: 1000,
         description: 'Gain a deeper appreciation of life through this memory of a near-death experience. All those teabags, closing in...',
         category: ['fear', 'anxiety'],
         photo: 'https://static.pexels.com/photos/32266/pexels-photo-large.jpg',
@@ -95,6 +95,14 @@ var seedProducts = function () {
         category: ['adventurous'],
         photo: 'https://static.pexels.com/photos/2156/sky-earth-space-working-large.jpg',
         featured: true
+    },
+    {
+       name: 'Breaking up with a girl',
+       price: 450,
+       description: 'This is the day. This may be the armageddon you’ve been wanting to avoid, the day of the doom that you’ve known to be coming all along. Today you are breaking up with your girlfriend. We hope that this memory doesn\'t destroy you.',
+       category: ['fear'],
+       photo: 'https://static.pexels.com/photos/27411/pexels-photo-27411-large.jpg',
+       featured: true
     }];
 
     var creatingProducts = products.map(function (productObj) {
