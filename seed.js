@@ -71,6 +71,30 @@ var seedProducts = function () {
         category: ['sadness', 'nostalgia'],
         photo: 'https://hd.unsplash.com/photo-1444384851176-6e23071c6127',
         featured: true
+    },
+    {
+        name: 'Your Old Chameleon, Weatherfield',
+        price: 500,
+        description: 'Remember with fondness your deceased best friend, Weatherfield. Many long nights were spent out of bed, sitting on your bedroom with Weatherfield\'s cage unlatched, your hand extended inward to caress his scaly ridges. Weatherfield gave you a feeling of love and peace that no romantic partner has since been able to replicate. There was something special about Weatherfield, and he will remain in your heart forever.',
+        category: ['romance', 'sadness', 'happy', 'nostalgia', 'sexual tension'],
+        photo: 'https://static.pexels.com/photos/62289/yemen-chameleon-chamaeleo-calyptratus-chameleon-reptile-62289-large.jpeg',
+        featured: true
+    },
+    {
+        name: 'Near-Death Experience: Too Many Teabags',
+        price: 400,
+        description: 'Gain a deeper appreciation of life through this memory of a near-death experience. All those teabags, closing in...',
+        category: ['fear', 'anxiety'],
+        photo: 'https://static.pexels.com/photos/32266/pexels-photo-large.jpg',
+        featured: true
+    },
+    {
+        name: 'Day in Life of an Astronaut',
+        price: 10000,
+        description: 'Ever dreamed of being an astronaut? Mesmerized by movies like Gravity or Interstellar? This is the memory for you. Be a NASA-affiliated astronaut working on the International Space Station.',
+        category: ['adventurous'],
+        photo: 'https://static.pexels.com/photos/2156/sky-earth-space-working-large.jpg',
+        featured: true
     }];
 
     var creatingProducts = products.map(function (productObj) {
