@@ -94,8 +94,6 @@
                 });
         };
 
-        //AFTER LUNCH BUILD SIGNUP BACKEND!!!!
-
         this.login = function (credentials) {
             return $http.post('/login', credentials)
                 .then(onSuccessfulLogin)
