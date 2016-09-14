@@ -8,7 +8,6 @@ app.config(function($stateProvider) {
 })
 
 app.controller('ProductCtrl', function($scope, $stateParams, ProductFactory) {
-	console.log("\n??????????????????", $stateParams);
 	ProductFactory.fetchOne($stateParams.id)
 	.then(function(product) {
 		$scope.product = product;
