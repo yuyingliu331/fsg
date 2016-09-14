@@ -7,11 +7,25 @@ app.config(function($stateProvider) {
 	})
 })
 
-app.controller('ProductCtrl', function($scope, $stateParams, ProductFactory) {
+app.controller('ProductCtrl', function($scope, $stateParams, ProductFactory, ReviewFactory) {
+	console.log('here?');
 	ProductFactory.fetchOne($stateParams.id)
 	.then(function(product) {
-		$scope.product = product;
+		$scope.product = product; // one product
 	});
+
+	
+	ReviewFactory.fetchAll($stateParams.id)
+	.then(function(reviews) {
+		$scope.reviews = reviews; 
+		// $scope.stars = reviews.map(function(review) {
+		// 	return +review.stars;
+		// })
+	});
+
+	$scope.getTimes=function(n){
+    	return new Array(n);
+	};
 });
 
 app.factory('ProductFactory', function($http) {
@@ -26,3 +40,5 @@ app.factory('ProductFactory', function($http) {
 
 	return returnObj;
 })
+
+

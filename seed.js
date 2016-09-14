@@ -20,6 +20,7 @@ name in the environment files.
 var chalk = require('chalk');
 var db = require('./server/db');
 var Product = db.model('product');
+var Review = db.model('reviews');
 var Promise = require('sequelize').Promise;
 
 var seedProducts = function () {
@@ -113,9 +114,38 @@ var seedProducts = function () {
 
 };
 
+var seedReviews = function (productIds) {
+    //[ ]
+    console.log("\n\n\nproducts", productIds);
+    var reviews = [{
+       title: 'Great Memory for space travel',
+       text: 'This space travel memeory was great! I highly recommend it.',
+       stars: 4,
+       productId: 1
+        
+    },{
+       name: 'Love the Memory of Childhood',
+       title: 'Great Memory for space travel',
+       text: 'This memeory of childhood was awesome! I highly recommend it.',
+       stars: 5,
+       productId: 1
+
+    }];
+
+    var creatingReviews = reviews.map(function (reviewObj) {
+        return Review.create(reviewObj);
+    });
+
+    return Promise.all(creatingReviews);
+
+};
+
 db.sync({ force: true })
     .then(function () {
         return seedProducts();
+    })
+    .then(function(seededProducts){
+        return seedReviews(seededProducts);
     })
     .then(function () {
         console.log(chalk.green('Seed successful!'));
