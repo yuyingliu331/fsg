@@ -19,8 +19,3 @@ app.factory('UserFactory', function($http) {
 	}
 	return returnObj;
 })
-
-	// TODO:
- 	// 2) inject UserFactory to productController
-	// 3) display username on html
-// })

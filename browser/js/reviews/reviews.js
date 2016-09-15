@@ -7,5 +7,14 @@ app.factory('ReviewFactory', function($http){
 			return reviews.data;
 		})
 	}
+
+	returnObj.saveReview = function (productId, userId, reviewText, reviewTitle, reviewRating){
+		var starCount = +reviewRating;
+        return $http.post('/api/reviews/'+productId+'/'+userId, { text: reviewText, title: reviewTitle, stars: starCount})
+        .then(function(review){
+ 			return review.data;
+        })
+	}
+
 	return returnObj;
 })
