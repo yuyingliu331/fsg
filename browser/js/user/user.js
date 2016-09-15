@@ -7,17 +7,19 @@ app.config(function($stateProvider) {
 })
 
 
-// app.factory('UserFactory', function($http) {
-// 	var returnObj = {};
-// 	returnObj.findUser = function(userId) {
-// 		 $http.get('/api/users/' + userId)
-// 		.then(function(user) {
-// 			return user.data;
-// 		})
-// 	}
-// 	return returnObj;
-// })
-// 	return returnObj;
+app.factory('UserFactory', function($http) {
+	var returnObj = {};
+	returnObj.findUser = function(userId) {
+		console.log("did we get factory for users? ", userId);
+		return $http.get('/api/users/' + userId)
+		.then(function(user) {
+			console.log("users", user);
+			return user.data;
+		})
+	}
+	return returnObj;
+})
+
 	// TODO:
  	// 2) inject UserFactory to productController
 	// 3) display username on html

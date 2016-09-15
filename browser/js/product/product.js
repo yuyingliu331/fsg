@@ -7,30 +7,35 @@ app.config(function($stateProvider) {
 	})
 })
 
-app.controller('ProductCtrl', function($scope, $stateParams, ProductFactory, ReviewFactory) {
+app.controller('ProductCtrl', function($scope, $stateParams, ProductFactory, ReviewFactory, UserFactory) {
+	
 	ProductFactory.fetchOne($stateParams.id)
 	.then(function(product) {
+		console.log("if we get here? ");
 		$scope.product = product; // one product
 	});
-
+    
 	
 	ReviewFactory.fetchAll($stateParams.id)
 	.then(function(reviews) {
+		console.log("do we have reviews?");
 		$scope.reviews = reviews; 
 		// $scope.users = reviews.map(function(review) {
 		//  	return findUser(review.userId);
 		// })
 	});
+    
+	var userId = 1;
+    UserFactory.findUser(userId)
+    .then(function(user){
+    	console.log("user:", user);
+    	$scope.user = user;
+    });
+
 
 	$scope.getTimes=function(n){
     	return new Array(n);
 	};
-
-	// function findUser = UserFactory.findUser($stateParams.id)
-	// .then(function(users){
-	// 	return users;
-	// })
-
 });
 
 app.factory('ProductFactory', function($http) {
