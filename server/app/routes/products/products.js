@@ -1,4 +1,4 @@
-// assume all URLs start with /api
+// assume all URLs start with /api/products
 var Product = require('../../../db/models/products.js')
 var router = require('express').Router(); // eslint-disable-line new-cap
 
