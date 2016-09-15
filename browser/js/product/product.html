@@ -6,4 +6,13 @@
 		<p class="preview">{{product.description}}</p>
 		<p>Price: {{product.price | currency}}</p>
 		<button type="button" class="add-to-cart btn btn-success" ng-click="addToCart(product)">add to cart</button>
+		<p>Customer Reviews:</p>
+		<div ng-repeat="review in reviews">
+              
+			<p>{{ review.text }}
+			<span ng-repeat="star in getTimes(review.stars) track by $index"> 
+			<span class="star"> &#9733 </span>
+		    </span>
+            </p>
+		</div>
 </section>
