@@ -31,7 +31,7 @@ app.factory('ProductsFactory', function(Session, $http) {
 
 	returnObj.addToCart = function(productId) {
 		// locating cart based on user ID because cart is associated w user
-		return $http.put('/api/carts/'  + Session.user.id, {productId: productId})
+		return $http.put('/api/carts/' + Session.user.id, {productId: productId})
 		.then(function(cart) {
 			return alert('it was added to cart in DB');
 		});

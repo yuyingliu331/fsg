@@ -2,36 +2,35 @@ app.config(function($stateProvider) {
 	$stateProvider.state('product', {
 		url: '/product/:id',
 		templateUrl: 'js/product/product.html',
-		controller: 'ProductsCtrl'
-		// add controller??
+		controller: 'ProductCtrl'
 	})
 })
 
-// app.controller('ProductCtrl', function($scope, $stateParams, ProductFactory, ProductsFactory) {
-// 	ProductFactory.fetchOne($stateParams.id)
-// 	.then(function(product) {
-// 		$scope.product = product;
-// 	});
+app.controller('ProductCtrl', function(Session, $scope, $stateParams, ProductFactory, ProductsFactory) {
+	ProductFactory.fetchOne($stateParams.id)
+	.then(function(product) {
+		$scope.product = product;
+	});
 
-// 	$scope.addToCart = function(productId) {
-// 		if (!$scope.loggedIn) {
-// 			if (!localStorage.getItem('cart')) {
-// 				console.log("supposedly creating the cart")
-// 				$scope.cart = new ProductsFactory.Cart(productId)
-// 				localStorage.setItem('cart', JSON.stringify($scope.cart));
-// 			}
-// 			else {
-// 				$scope.cart.ids.push(productId);
-// 				localStorage.setItem('cart', JSON.stringify($scope.cart));
-// 			}
-// 		}
-// 		// ProductsFactory.addToCart(product)
-// 		// .then(function(product) {
-// 		// 	alert('you added it.');
-// 		// });
-// 	}
-
-// });
+	$scope.addToCart = function(productId) {
+		if (!Session.user) {
+			if (!localStorage.getItem('cart')) {
+				var newcart = ProductsFactory.initializeCart(productId)
+				localStorage.setItem('cart', JSON.stringify(newcart));
+			}
+			else {
+				var cart = ProductsFactory.updateCart(productId);
+				localStorage.setItem('cart', JSON.stringify(cart));
+			}
+		}
+		else {
+			ProductsFactory.addToCart(productId)
+			.then(function(productId) {
+				alert('you added it.');
+			});	
+		}
+	}
+});
 
 app.factory('ProductFactory', function($http) {
 	var returnObj = {};
