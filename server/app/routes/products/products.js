@@ -1,5 +1,6 @@
 // assume all URLs start with /api/products
-var Product = require('../../../db/models/products.js')
+var Product = require('../../../db/models/products.js');
+var Review = require('../../../db/models/reviews.js');
 var router = require('express').Router(); // eslint-disable-line new-cap
 
 router.get('/', function(req, res, next) {
@@ -16,5 +17,13 @@ router.get('/:id', function(req, res, next) {
 		res.json(product);
 	})
 });
+
+router.get('/reviews/:id', function(req, res, next) {
+	var productId = req.params.id;
+	Review.findAll({where: {productId: productId}})
+	.then(function (reviews) {
+		res.json(reviews);
+	})
+})
 
 module.exports = router;

@@ -20,6 +20,8 @@ name in the environment files.
 var chalk = require('chalk');
 var db = require('./server/db');
 var Product = db.model('product');
+var Review = db.model('reviews');
+var User = db.model('user');
 var Promise = require('sequelize').Promise;
 
 var seedProducts = function () {
@@ -110,12 +112,59 @@ var seedProducts = function () {
     });
 
     return Promise.all(creatingProducts);
-
 };
 
+var seedUsers = function () {
+
+    var users = [{
+        name: 'Melissa Jones',
+        email: 'mlsong@gmail.com',
+        password: '1234'
+    }];
+
+    var creatingUsers = users.map(function(userObj){
+        return User.create(userObj);
+    });
+
+    return Promise.all(creatingUsers);
+}
+
+var seedReviews = function (productIds, userIds) {
+    var reviews = [{
+       title: 'Great Memory for space travel',
+       text: 'This space travel memeory was great! I highly recommend it.',
+       stars: 4,
+       productId: 1,
+       userId: 1   /// To do: need to consider how to link userId with reviews
+        
+    },{
+       name: 'Love the Memory of Childhood',
+       title: 'Great Memory for space travel',
+       text: 'This memeory of childhood was awesome! I highly recommend it.',
+       stars: 5,
+       productId: 1,
+       userId: 1
+
+    }];
+
+    var creatingReviews = reviews.map(function (reviewObj) {
+        return Review.create(reviewObj);
+    });
+
+    return Promise.all(creatingReviews);
+
+};
 db.sync({ force: true })
     .then(function () {
         return seedProducts();
+    })
+    .then(function(products){
+       var users = seedUsers();
+       return [products,users];
+    })
+    .spread(function(products, users){
+       
+        return seedReviews(products, users);
     })
     .then(function () {
         console.log(chalk.green('Seed successful!'));

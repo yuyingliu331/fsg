@@ -6,11 +6,36 @@ app.config(function($stateProvider) {
 	})
 })
 
-app.controller('ProductCtrl', function(Session, $scope, $stateParams, ProductFactory, ProductsFactory) {
+app.controller('ProductCtrl', function(Session, $scope, $stateParams, ProductFactory, ProductsFactory, ReviewFactory, UserFactory) {
+
 	ProductFactory.fetchOne($stateParams.id)
 	.then(function(product) {
-		$scope.product = product;
+		$scope.product = product; // one product
 	});
+
+	ReviewFactory.fetchAll($stateParams.id)
+	.then(function(reviews) {
+		$scope.reviews = reviews;
+	});
+
+    var userId = Session.user.id;
+    UserFactory.findUser(userId)
+    .then(function(user){
+    	$scope.user = user;
+    });
+
+    $scope.saveReview = function(productId, userId, reviewText, reviewTitle, reviewRating) {
+    	ReviewFactory.saveReview(productId, userId, reviewText, reviewTitle,reviewRating)
+    	.then(function(review) {
+    		$scope.newReview = review;
+    		$scope.review.title = "";
+    		$scope.review.text = "";
+    	})
+    }
+
+	$scope.getTimes=function(n){
+    	return new Array(n);
+	};
 
 	$scope.addToCart = function(productId) {
 		if (!Session.user) {
@@ -27,7 +52,7 @@ app.controller('ProductCtrl', function(Session, $scope, $stateParams, ProductFac
 			ProductsFactory.addToCart(productId)
 			.then(function(productId) {
 				alert('you added it.');
-			});	
+			});
 		}
 	}
 });
@@ -44,3 +69,5 @@ app.factory('ProductFactory', function($http) {
 
 	return returnObj;
 })
+
+
