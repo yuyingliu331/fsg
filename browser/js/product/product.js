@@ -10,7 +10,7 @@ app.controller('ProductCtrl', function(Session, AuthService, $scope, $stateParam
 
 	ProductFactory.fetchOne($stateParams.id)
 	.then(function(product) {
-		$scope.product = product; // one product
+		$scope.product = product;
 	});
 
 	ReviewFactory.fetchAll($stateParams.id)
@@ -19,15 +19,16 @@ app.controller('ProductCtrl', function(Session, AuthService, $scope, $stateParam
 		$scope.reviews = reviews;
 	});
 
-  var loggedInUser;
+	var loggedInUser;
 
-  AuthService.getLoggedInUser()
+	AuthService.getLoggedInUser()
     .then(function(user){
       loggedInUser = user;
+      $scope.loggedInUserName = user.name;
     })
 
     $scope.saveReview = function(productId, reviewText, reviewTitle, reviewRating) {
-    	ReviewFactory.saveReview(productId, loggedInUser.id, reviewText, reviewTitle,reviewRating)
+    	ReviewFactory.saveReview(productId, loggedInUser.id, reviewText, reviewTitle, reviewRating)
     	.then(function(review) {
     		$scope.newReview = review;
     		$scope.review.title = "";
@@ -53,7 +54,6 @@ app.controller('ProductCtrl', function(Session, AuthService, $scope, $stateParam
 		else {
 			ProductsFactory.addToCart(productId)
 			.then(function(productId) {
-				alert('you added it.');
 			});
 		}
 	}
@@ -71,5 +71,3 @@ app.factory('ProductFactory', function($http) {
 
 	return returnObj;
 })
-
-
