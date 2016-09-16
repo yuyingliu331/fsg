@@ -8,7 +8,7 @@
 	<button type="button" class="add-to-cart btn btn-success" ng-click="addToCart(product.id)">add to cart</button>
 	<p>Customer Reviews:</p>
   <div ng-repeat="review in reviews">
-    <span>  {{ user.name }} : </span>
+    <span>  {{ review.user.name }} : </span>
     <p>{{ review.title }}</p>
     <p>{{ review.text }}
       <span ng-repeat="star in getTimes(review.stars) track by $index">
@@ -44,7 +44,7 @@
    		</div>
    		<textarea ng-model="review.text"></textarea>
    		<div>
-   		<button type="button" class="btn btn-default" ng-click="saveReview(product.id, user.id, review.text, review.title, review.rating)">Create A Review!</button>
+   		<button type="button" class="btn btn-default" ng-click="saveReview(product.id, review.text, review.title, review.rating)">Create A Review!</button>
    	    </div>
     </span>
 </section>

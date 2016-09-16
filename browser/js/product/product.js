@@ -6,7 +6,7 @@ app.config(function($stateProvider) {
 	})
 })
 
-app.controller('ProductCtrl', function(Session, $scope, $stateParams, ProductFactory, ProductsFactory, ReviewFactory, UserFactory) {
+app.controller('ProductCtrl', function(Session, AuthService, $scope, $stateParams, ProductFactory, ProductsFactory, ReviewFactory, UserFactory) {
 
 	ProductFactory.fetchOne($stateParams.id)
 	.then(function(product) {
@@ -15,17 +15,19 @@ app.controller('ProductCtrl', function(Session, $scope, $stateParams, ProductFac
 
 	ReviewFactory.fetchAll($stateParams.id)
 	.then(function(reviews) {
+    console.log(reviews);
 		$scope.reviews = reviews;
 	});
 
-    var userId = Session.user.id;
-    UserFactory.findUser(userId)
-    .then(function(user){
-    	$scope.user = user;
-    });
+  var loggedInUser;
 
-    $scope.saveReview = function(productId, userId, reviewText, reviewTitle, reviewRating) {
-    	ReviewFactory.saveReview(productId, userId, reviewText, reviewTitle,reviewRating)
+  AuthService.getLoggedInUser()
+    .then(function(user){
+      loggedInUser = user;
+    })
+
+    $scope.saveReview = function(productId, reviewText, reviewTitle, reviewRating) {
+    	ReviewFactory.saveReview(productId, loggedInUser.id, reviewText, reviewTitle,reviewRating)
     	.then(function(review) {
     		$scope.newReview = review;
     		$scope.review.title = "";
