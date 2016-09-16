@@ -1,3 +1,15 @@
 <section id="checkout">
-	<p> this is a single checkout page</p>
+	<p>Checkout View</p>
+  <form action="/your-charge-code" method="POST">
+    <script
+      type="text/javascript-lazy"
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="pk_test_S0oFek96V9yeMMQdI3aE0A65"
+      data-amount="999"
+      data-name="Demo Site"
+      data-description="Widget"
+      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+      data-locale="auto">
+    </script>
+  </form>
 </section>
