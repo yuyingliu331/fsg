@@ -18,9 +18,7 @@ app.controller('ProductCtrl', function(Session, $scope, $stateParams, ProductFac
 		$scope.reviews = reviews;
 	});
 
-    //TODO: we need to use the login function to map the user here!!!
-    //Should not hard code.
-	var userId = 1;
+    var userId = Session.user.id;
     UserFactory.findUser(userId)
     .then(function(user){
     	$scope.user = user;
