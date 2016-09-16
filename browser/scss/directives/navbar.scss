@@ -2,8 +2,8 @@ navbar {
 
   display: block;
   background: white;
-  border-bottom: 1px solid black;
-  box-shadow: 1px 1px 14px -3px black;
+  border-bottom: 1px solid #666666;
+  box-shadow: 1px 1px 14px -3px #666666;
 
   .container {
     width: 91%;
@@ -40,7 +40,7 @@ navbar {
   .login-button {
     float: right;
     border: 1px solid black;
-    margin-top: 10px;
+    margin: 10px 0px 0px 8px;
     background: none;
     outline: none !important;
   }

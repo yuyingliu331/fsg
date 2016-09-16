@@ -3,48 +3,60 @@ app.config(function($stateProvider) {
 		url: '/product/:id',
 		templateUrl: 'js/product/product.html',
 		controller: 'ProductCtrl'
-		// add controller??
 	})
 })
 
-app.controller('ProductCtrl', function($scope, $stateParams, ProductFactory, ReviewFactory, UserFactory) {
-	
+app.controller('ProductCtrl', function(Session, $scope, $stateParams, ProductFactory, ProductsFactory, ReviewFactory, UserFactory) {
+
 	ProductFactory.fetchOne($stateParams.id)
 	.then(function(product) {
 		$scope.product = product; // one product
 	});
-	
+
 	ReviewFactory.fetchAll($stateParams.id)
 	.then(function(reviews) {
-		$scope.reviews = reviews; 
+		$scope.reviews = reviews;
 	});
-    
-    //TODO: we need to use the login function to map the user here!!! 
-    //Should not hard code. 
+
+    //TODO: we need to use the login function to map the user here!!!
+    //Should not hard code.
 	var userId = 1;
     UserFactory.findUser(userId)
     .then(function(user){
     	$scope.user = user;
     });
-    
+
     $scope.saveReview = function(productId, userId, reviewText, reviewTitle, reviewRating) {
-    	console.log("review.Rating", reviewRating);
-    	
     	ReviewFactory.saveReview(productId, userId, reviewText, reviewTitle,reviewRating)
     	.then(function(review) {
-    		//display the newly added review
     		$scope.newReview = review;
     		$scope.review.title = "";
     		$scope.review.text = "";
-    		//$scope.review.rating = "";
     	})
     }
-
-    
 
 	$scope.getTimes=function(n){
     	return new Array(n);
 	};
+
+	$scope.addToCart = function(productId) {
+		if (!Session.user) {
+			if (!localStorage.getItem('cart')) {
+				var newcart = ProductsFactory.initializeCart(productId)
+				localStorage.setItem('cart', JSON.stringify(newcart));
+			}
+			else {
+				var cart = ProductsFactory.updateCart(productId);
+				localStorage.setItem('cart', JSON.stringify(cart));
+			}
+		}
+		else {
+			ProductsFactory.addToCart(productId)
+			.then(function(productId) {
+				alert('you added it.');
+			});
+		}
+	}
 });
 
 app.factory('ProductFactory', function($http) {

@@ -1,27 +1,27 @@
 <section id="product">
-			<div class="thumbnail">
-			<img src="{{product.photo}}" class="portrait">
-	</div>
+  <div class="thumbnail">
+    <img src="{{product.photo}}" class="portrait">
+  </div>
 	<a ui-sref="product({id: product.id})">{{product.name}}</a>
 	<p class="preview">{{product.description}}</p>
 	<p>Price: {{product.price | currency}}</p>
-	<button type="button" class="add-to-cart btn btn-success" ng-click="addToCart(product)">add to cart</button>
+	<button type="button" class="add-to-cart btn btn-success" ng-click="addToCart(product.id)">add to cart</button>
 	<p>Customer Reviews:</p>
-	<div ng-repeat="review in reviews">
-        <span>  {{ user.name }} : </span>
-        <p>{{ review.title }}</p>
-		<p>{{ review.text }}
-			<span ng-repeat="star in getTimes(review.stars) track by $index"> 
-				<span class="star"> &#9733 </span>
-		    </span>
-        </p>	
-    </div>
+  <div ng-repeat="review in reviews">
+    <span>  {{ user.name }} : </span>
+    <p>{{ review.title }}</p>
+    <p>{{ review.text }}
+      <span ng-repeat="star in getTimes(review.stars) track by $index">
+        <span class="star"> &#9733 </span>
+      </span>
+    </p>
+  </div>
     <div ng-hide="!newReview">
     	<p>{{ newReview.title }}</p>
     	<p>{{ newReview.text }}</p>
 
     </div>
-   	<span> 
+   	<span>
         <form name="selection">
    		<div>
    			<tab> Review Ratings:</tab>
