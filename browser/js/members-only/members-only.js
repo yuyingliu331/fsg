@@ -21,11 +21,6 @@ app.controller('AdminController', function($scope, ProductsFactory, ProductFacto
         $scope.products = products;
     });
 
-    // $scope.edit = function(productId) {
-    //    console.log("productId", productId);
-    //    $state.go('product')
-    // }
-
     $scope.delete = function(productId){
         ProductFactory.delete(productId)
         .then(function(product){
