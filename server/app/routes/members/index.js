@@ -1,7 +1,7 @@
 'use strict';
 var router = require('express').Router(); // eslint-disable-line new-cap
 module.exports = router;
-var _ = require('lodash');
+var db = require('../../../db/index.js');
 var Product = db.model('product');
 
 var ensureAuthenticated = function (req, res, next) {
