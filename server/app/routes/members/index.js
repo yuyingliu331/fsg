@@ -11,15 +11,3 @@ var ensureAuthenticated = function (req, res, next) {
         res.status(401).end();
     }
 };
-
-// router.get('/secret-stash', ensureAuthenticated, function (req, res) {
-    
-//     //this is getting all the products for the admin page. 
-//     Product.findAll()
-//     .then(function(products){
-//         theStash = products.map(function(product){ 
-//             return product;
-//         })
-        
-//     });
-// });
