@@ -8,7 +8,6 @@ module.exports = function (app, db) {
     var User = db.model('user');
 
     var googleConfig = app.getValue('env').GOOGLE;
-    console.log('googleConfig', googleConfig);
     var googleCredentials = {
         clientID: googleConfig.clientID,
         clientSecret: googleConfig.clientSecret,
