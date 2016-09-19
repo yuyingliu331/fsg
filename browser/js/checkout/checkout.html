@@ -1,3 +1,20 @@
-<section id="checkout">
-	<p> this is a single checkout page</p>
-</section>
+  <div>
+    <!--
+      Works like Stripe Checkout's simple integration, but calls the
+      function passed to stripe-checkout with the token object instead
+      of submitting a form.
+    -->
+    <form action="/api/checkout" method="POST">
+    <button stripe-checkout="ctrl.doCheckout"
+            data-key="pk_test_S0oFek96V9yeMMQdI3aE0A65"
+            data-name="R.A.M."
+            data-description="{product.name}"
+            data-amount="{product.price}"
+            data-zip-code="true">
+      Buy
+    </button>
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+
+  </div>
