@@ -2,7 +2,7 @@
 var router = require('express').Router(); // eslint-disable-line new-cap
 module.exports = router;
 var _ = require('lodash');
-var Product = require('../../../db/models/products.js');
+var Product = db.model('product');
 
 var ensureAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) {
