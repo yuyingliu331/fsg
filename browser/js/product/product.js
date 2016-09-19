@@ -57,6 +57,7 @@ app.controller('ProductCtrl', function(Session, AuthService, $scope, $stateParam
 			});
 		}
 	}
+
 });
 
 app.factory('ProductFactory', function($http) {
@@ -69,7 +70,28 @@ app.factory('ProductFactory', function($http) {
 		});
 	}
 
-	return returnObj;
+	returnObj.add = function(id){
+		return $http.post('/api/product/')
+		.then(function(product){
+			return product.data;
+		});
+	}
+
+	returnObj.delete = function(id){
+		return $http.delete('/api/product/'+id)
+		.then(function(product){
+			return product.data
+		});
+	}
+
+	returnObj.edit = function(id, body){
+		console.log("product fatory", body);
+		return $http.put('/api/product/'+id, { description :body})
+		.then(function(product){
+			return product.data
+		});
+	}
+    return returnObj;
 })
 
 

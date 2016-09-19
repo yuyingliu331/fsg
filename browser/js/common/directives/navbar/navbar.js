@@ -25,6 +25,9 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                     $state.go('home');
                 });
             };
+            scope.isAdmin = function(){
+                AuthService.
+            }
 
             var setUser = function () {
                 AuthService.getLoggedInUser().then(function (user) {

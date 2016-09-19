@@ -27,4 +27,27 @@ router.get('/reviews/:id', function(req, res, next) {
 	})
 })
 
+router.delete('/:id', function(req, res, next){
+  Product.findById(req.params.id)
+  .then(function(product){
+  	product.destroy()
+  }).catch(next)
+
+})
+
+router.put('/:id', function(req, res, next){
+	console.log("serverside:", req.body)
+	Product.update(req.body, { where: { id: req.params.id }})
+	.then(function(product) { 
+		res.json(product)
+	}).catch(next)
+})
+
+router.post('/', function(req, res, next){
+	Product.create(req.body)
+	.then(function(product){
+		res.json(product)
+	}).catch(next)
+})
+
 module.exports = router;

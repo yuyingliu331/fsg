@@ -14,12 +14,25 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('AdminController', function($scope, ProductsFactory){
+app.controller('AdminController', function($scope, ProductsFactory, ProductFactory, $state){
 
     ProductsFactory.fetchAll()
     .then(function(products) {
         $scope.products = products;
     });
 
-})
+    // $scope.edit = function(productId) {
+    //    console.log("productId", productId);
+    //    $state.go('product')
+    // }
 
+    $scope.delete = function(productId){
+        ProductFactory.delete(productId)
+        .then(function(product){
+            $state.go('products');
+        })
+    }
+    $scope.add = function(){
+        $state.go("addNewProduct");
+    }
+})
