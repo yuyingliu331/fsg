@@ -119,7 +119,8 @@ var seedUsers = function () {
     var users = [{
         name: 'Melissa Jones',
         email: 'mlsong@gmail.com',
-        password: '1234'
+        password: '1234',
+        isAdmin: true
     }];
 
     var creatingUsers = users.map(function(userObj){
