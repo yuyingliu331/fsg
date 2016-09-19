@@ -21,7 +21,7 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, ProductsFacto
         .then(function () {
             var cart = JSON.parse(localStorage.getItem('cart'));
             if (cart) {
-                cart.ids.forEach(function(product) {
+                cart.forEach(function(product) {
                     ProductsFactory.addToCart(product)   
                 });
             }

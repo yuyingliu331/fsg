@@ -12,13 +12,19 @@ app.factory('ProductsFactory', function(Session, $http) {
 	returnObj.cart = {};
 
 	returnObj.initializeCart = function(productId) {
-		this.cart = new this.Cart(productId);
+		this.cart = [productId];
 		return this.cart;
 	}
 
 	returnObj.updateCart = function(productId) {
 		this.cart = JSON.parse(localStorage.getItem('cart'));
-		this.cart.ids.push(productId);
+		console.log(this.cart, "productId", productId);
+		if (this.cart.indexOf(productId) !== -1) {
+			alert('This item is already in your cart! Update the quantity on the \'View Cart\' page');
+		}
+		else {
+			this.cart.push(productId);
+		}
 		return this.cart;
 	}
 
@@ -33,12 +39,8 @@ app.factory('ProductsFactory', function(Session, $http) {
 		// locating cart based on user ID because cart is associated w user
 		return $http.put('/api/carts/' + Session.user.id, {productId: productId})
 		.then(function(cart) {
-			return alert('it was added to cart in DB');
+			return;
 		});
-	}
-
-	returnObj.Cart = function(id) {
-		this.ids = [id];
 	}
 
 	return returnObj;
@@ -73,7 +75,7 @@ app.controller('ProductsCtrl', function(Session, AuthService, AUTH_EVENTS, $stat
 		else {
 			ProductsFactory.addToCart(productId)
 			.then(function(productId) {
-				alert('you added it.');
+				return;
 			});	
 		}
 	}
