@@ -8,7 +8,7 @@ module.exports = function (app, db) {
     var User = db.model('user');
 
     var googleConfig = app.getValue('env').GOOGLE;
-
+    console.log('googleConfig', googleConfig);
     var googleCredentials = {
         clientID: googleConfig.clientID,
         clientSecret: googleConfig.clientSecret,
@@ -16,7 +16,8 @@ module.exports = function (app, db) {
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
-
+        var userName = profile.displayName;
+        var email = profile.emails[0].value;
         User.findOne({
                 where: {
                     google_id: profile.id
@@ -27,7 +28,9 @@ module.exports = function (app, db) {
                     return user;
                 } else {
                     return User.create({
-                        google_id: profile.id
+                        google_id: profile.id,
+                        name: userName,
+                        email: email
                     });
                 }
             })
