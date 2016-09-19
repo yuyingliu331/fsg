@@ -1,7 +1,32 @@
 <section id="cart">
-	<div class="col-lg-12">
+	<div class="col-sm-12 emptycart">
 		<div>
-			<h1>Your cart is empty</h1>
+			<h1 ng-if="!cart.length">Your cart is empty</h1>
+			<h1 ng-if="cart.length">Your Cart</h1>
 		</div>
 	</div>
+	<div class="bigcontainer">
+		<div class="container">
+			<div class="col-sm-6 list" ng-repeat="product in cart">
+				<div class="thumbnail">
+					<img ng-src="{{product.photo}}" class="portrait">
+				</div>
+				<div class="product-info">
+					<p><b><a ui-sref="product({id: product.id})">{{product.name}}</a></b></p>
+					<p><b>Price: </b> {{product.price * qty | currency}}</p>
+					<p><b>Qty: </b> 
+					<select name="qty" ng-model="qty" ng-init="qty = qtyOptions[0]" ng-options="qtyOption for qtyOption in qtyOptions">
+					</select>
+					<button class="btn btn-danger" ng-click="removeFromCart(product.id, user.id)">remove from cart</button></p>
+				</div>
+			</div>
+		</div>
+		<button class="btn btn-success checkout" ui-sref="checkout">check out</button>
+	</div>
 </section>
+
+<!-- // make checkout button that redirects to checkout state -->
+
+
+
+

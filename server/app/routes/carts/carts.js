@@ -3,6 +3,7 @@
 var db = require('../../../db/index.js');
 var Cart = db.model('cart');
 var Product = db.model('product');
+var CartProduct = db.model('CartProduct');
 var router = require('express').Router(); // eslint-disable-line new-cap
 
 router.put('/:userId', function(req, res, next) {
@@ -29,6 +30,18 @@ router.get('/:userId', function(req, res, next) {
 	})
 	.then(function(cart) {
 		res.send(cart);
+	})
+})
+
+router.delete('/:cartId/:productId', function(req, res, next) {
+	CartProduct.destroy({
+		where: {
+			productId: req.params.productId,
+			cartId: req.params.cartId
+		}
+	})
+	.then(function(productInCart) {
+		res.sendStatus(200)
 	})
 })
 

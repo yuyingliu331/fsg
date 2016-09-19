@@ -14,9 +14,7 @@ var Review = require('./models/reviews');
 // e.g. User.hasMany(Reports)
 
 Order.belongsTo(User);
-//User.hasMany(Order);
 Cart.belongsTo(User);
-//User.hasOne(Cart);
 Cart.belongsToMany(Product, {through: 'CartProduct'});
 Product.belongsToMany(Cart, {through: 'CartProduct'});
 Payment.belongsTo(Order);
