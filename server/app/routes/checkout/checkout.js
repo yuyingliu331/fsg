@@ -1,7 +1,7 @@
 // assume all routes start with api/checkout
 
 var router = require('express').Router();
-var stripe = require('stripe')('sk_test_lsEvv4vV5poxI8yzfylBEJE1');
+var stripe = require('stripe')('sk_test_awkht6sVaMH780dpIAF7xQ0z');
 module.exports = router;
 
 router.post('/', function(req, res, next){
