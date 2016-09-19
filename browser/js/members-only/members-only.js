@@ -23,11 +23,11 @@ app.controller('AdminController', function($scope, ProductsFactory, ProductFacto
 
     $scope.delete = function(productId){
         ProductFactory.delete(productId)
-        .then(function(product){
+        .then(function(){
             $state.go('products');
         })
     }
     $scope.add = function(){
-        $state.go("addNewProduct");
+        $state.go('addNewProduct');
     }
 })

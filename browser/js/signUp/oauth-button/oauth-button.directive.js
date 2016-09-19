@@ -1,4 +1,3 @@
-//oauth-button.directive.js
 'use strict';
 
 app.directive('oauthButton', function () {
