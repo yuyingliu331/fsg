@@ -22,7 +22,7 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, ProductsFacto
             var cart = JSON.parse(localStorage.getItem('cart'));
             if (cart) {
                 cart.forEach(function(product) {
-                    ProductsFactory.addToCart(product)   
+                    ProductsFactory.addToCart(product);
                 });
             }
             $state.go('home');

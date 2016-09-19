@@ -14,11 +14,10 @@ app.factory('ProductsFactory', function(Session, $http) {
 	returnObj.initializeCart = function(productId) {
 		this.cart = [productId];
 		return this.cart;
-	}
+	};
 
 	returnObj.updateCart = function(productId) {
 		this.cart = JSON.parse(localStorage.getItem('cart'));
-		console.log(this.cart, "productId", productId);
 		if (this.cart.indexOf(productId) !== -1) {
 			alert('This item is already in your cart! Update the quantity on the \'View Cart\' page');
 		}
@@ -26,27 +25,27 @@ app.factory('ProductsFactory', function(Session, $http) {
 			this.cart.push(productId);
 		}
 		return this.cart;
-	}
+	};
 
 	returnObj.fetchAll = function() {
 		return $http.get('/api/products')
 		.then(function(products) {
 			return products.data;
 		});
-	}
+	};
 
 	returnObj.addToCart = function(productId) {
 		// locating cart based on user ID because cart is associated w user
 		return $http.put('/api/carts/' + Session.user.id, {productId: productId})
-		.then(function(cart) {
+		.then(function() {
 			return;
 		});
-	}
+	};
 
 	return returnObj;
 });
 
-app.controller('ProductsCtrl', function(Session, AuthService, AUTH_EVENTS, $stateParams, $scope, ProductFactory, ProductsFactory, $rootScope) {
+app.controller('ProductsCtrl', function(Session, AuthService, AUTH_EVENTS, $stateParams, $scope, ProductFactory, ProductsFactory) {
 	$scope.loggedIn = false;
 
 	ProductsFactory.fetchAll()
@@ -59,12 +58,12 @@ app.controller('ProductsCtrl', function(Session, AuthService, AUTH_EVENTS, $stat
 		$scope.product = product;
 	});
 
-	$scope.category = "default";
+	$scope.category = 'default';
 
 	$scope.addToCart = function(productId) {
 		if (!Session.user) {
 			if (!localStorage.getItem('cart')) {
-				var newcart = ProductsFactory.initializeCart(productId)
+				var newcart = ProductsFactory.initializeCart(productId);
 				localStorage.setItem('cart', JSON.stringify(newcart));
 			}
 			else {
@@ -74,19 +73,19 @@ app.controller('ProductsCtrl', function(Session, AuthService, AUTH_EVENTS, $stat
 		}
 		else {
 			ProductsFactory.addToCart(productId)
-			.then(function(productId) {
+			.then(function() {
 				return;
-			});	
+			});
 		}
-	}
+	};
 
 	$scope.categoryFilter = function(product) {
-		if ($scope.category == "default" || $scope.category == "show all") {
+		if ($scope.category === 'default' || $scope.category === 'show all') {
 			return true;
 		}
 		else {
 			for (var i = 0; i < product.category.length; i++) {
-				if (product.category[i] == $scope.category) {
+				if (product.category[i] === $scope.category) {
 					return true;
 				}
 			}
@@ -96,7 +95,7 @@ app.controller('ProductsCtrl', function(Session, AuthService, AUTH_EVENTS, $stat
 
 	$scope.setCategory = function(selected) {
 		$scope.category = selected;
-	}
+	};
 
 	$scope.categories = ['show all', 'fear', 'anxiety', 'everyday experiences', 'sexual tension', 'social', 'adventurous', 'happy', 'nostalgia', 'romance', 'sadness', 'surprise']
 

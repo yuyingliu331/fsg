@@ -1,7 +1,7 @@
 // assume all routes start with api/checkout
 
 var router = require('express').Router();
-var stripe = require("stripe")("sk_test_lsEvv4vV5poxI8yzfylBEJE1");
+var stripe = require('stripe')('sk_test_lsEvv4vV5poxI8yzfylBEJE1');
 module.exports = router;
 
 router.post('/', function(req, res, next){
@@ -11,9 +11,9 @@ router.post('/', function(req, res, next){
   // Create a charge: this will charge the user's card
   var charge = stripe.charges.create({
     amount: 1000, // Amount in cents
-    currency: "usd",
+    currency: 'usd',
     source: token,
-    description: "Example charge"
+    description: 'Example charge'
   }, function(err, charge) {
     if (err && err.type === 'StripeCardError') {
       // The card has been declined

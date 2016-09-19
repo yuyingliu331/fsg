@@ -1,0 +1,20 @@
+<section class="products">
+	<ng-form name="editPage">
+
+	<div class="container">
+		<div class="col-sm-4" ng-repeat="product in products">
+		<div class="thumbnail">
+			<img ng-src="{{product.photo}}" class="portrait">
+		</div>
+		<a ui-sref="product({id: product.id})">{{product.name}}</a>
+		<p class="preview" ng-model="content" >{{product.preview}}</p>
+		<p>Price: {{product.price | currency}}</p>
+
+		<button type="button" class="add-to-cart btn btn-success" ng-click="delete(product.id)">Delete It</button>
+		<button type="button" class="add-to-cart btn btn-success" ng-click="add()">Add Similar product</button>
+
+
+		</div>
+	</div>
+        </ng-form>
+</section>

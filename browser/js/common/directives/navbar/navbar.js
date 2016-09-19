@@ -1,4 +1,4 @@
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) {
+app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, Session) {
 
     return {
         restrict: 'E',
@@ -9,7 +9,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             scope.items = [
                 { label: 'Home', state: 'home' },
                 { label: 'Shop for Memories', state: 'products' },
-                { label: 'Members Only', state: 'membersOnly', auth: true }
+                { label: 'Admin User Only', state: 'membersOnly', auth: true }
             ];
 
             scope.user = null;
@@ -18,12 +18,16 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                 return AuthService.isAuthenticated();
             };
 
+            scope.isAdmin = function(){
+                return Session.user.isAdmin;
+            }
+
             scope.logout = function () {
                 AuthService.logout().then(function () {
                     localStorage.clear();
                     $state.go('home');
                 });
-            };
+            };   
 
             var setUser = function () {
                 AuthService.getLoggedInUser().then(function (user) {

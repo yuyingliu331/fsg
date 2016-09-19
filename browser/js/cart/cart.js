@@ -23,9 +23,8 @@ app.controller('CartCtrl', function($state, $scope, CartFactory, AuthService) {
 
 	$scope.removeFromCart = function(productId, userId) {
 		CartFactory.removeFromCart(productId, userId)
-		.then(function(cart) {
+		.then(function() {
 			return CartFactory.getCart();
-			//$state.reload();
 		})
 		.then(function(cart) {
 
@@ -44,7 +43,7 @@ app.factory('CartFactory', function(AuthService, Session, $http, $q) {
 			if (user) {
 				return $http.get('/api/carts/' + userId)
 				.then(function(cart) {
-					return $http.delete("/api/carts/" + cart.data.id + "/" + productId)
+					return $http.delete('/api/carts/' + cart.data.id + '/' + productId)
 				})
 			}
 			else {
@@ -52,7 +51,7 @@ app.factory('CartFactory', function(AuthService, Session, $http, $q) {
 				var index = cart.indexOf(productId);
 				cart.splice(index, 1);
 				localStorage.setItem('cart', JSON.stringify(cart));
-			}	
+			}
 		});
 	}
 
@@ -68,7 +67,6 @@ app.factory('CartFactory', function(AuthService, Session, $http, $q) {
 				});
 			}
 			else {
-				var cartArr = [];
 				var ids = JSON.parse(localStorage.getItem('cart'));
 				// reduces array to only unique IDs
 				ids = returnObj.uniqueIds(ids);
@@ -83,17 +81,17 @@ app.factory('CartFactory', function(AuthService, Session, $http, $q) {
 				});
 				return $q.all(ids);
 			}
-			
 		});
 	}
 
 	returnObj.uniqueIds = function(arr) {
-    	var uniques = [];
-    	for (var i = 0, l = arr.length; i < l; i++)
-        if (uniques.indexOf(arr[i]) === -1) {
-            uniques.push(arr[i]);
-        }
-    	return uniques;
+		var uniques = [];
+		for (var i = 0; i < arr.length; i++) {
+	        if (uniques.indexOf(arr[i]) === -1) {
+	            uniques.push(arr[i]);
+	        }
+	    }
+		return uniques;
 	}
 
 	return returnObj;
