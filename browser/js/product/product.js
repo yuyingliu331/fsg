@@ -37,7 +37,7 @@ app.controller('ProductCtrl', function(Session, AuthService, $scope, $stateParam
 };
 
 	$scope.getTimes = function(stringLength){
-     return new Array(stringLength);
+	        return new Array(stringLength);
 	};
 
 	$scope.addToCart = function(productId) {
