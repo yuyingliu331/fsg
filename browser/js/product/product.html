@@ -17,34 +17,39 @@
     </p>
   </div>
     <div ng-hide="!newReview">
-    	<p>{{ newReview.title }}</p>
+    	<p>{{ loggedInUserName }}</p>
+      <span ng-repeat="star in getTimes(newReview.stars) track by $index">
+        <span class="star"> &#9733 </span>
+      </span>
+      <p>{{ newReview.title }}</p>
     	<p>{{ newReview.text }}</p>
 
     </div>
-   	<span>
-        <form name="selection">
-   		<div>
-   			<p> Review Ratings:</p>
-            <input ng-model="review.title"></input>
-   			<label>
-   				<input type="radio" ng-model="review.rating" value="1">1</input>
-   			</label>
-   			<label>
-   				<input type="radio" ng-model="review.rating" value="2">2</input>
-   			</label>
-   			<label>
-   				<input type="radio" ng-model="review.rating" value="3">3</input>
-   			</label>
-   			<label>
-   				<input type="radio" ng-model="review.rating" value="4">4</input>
-   			</label>
-   			<label>
-   				<input type="radio" ng-model="review.rating" value="5">5</input>
-   			</label>
-   		</div>
-   		<textarea ng-model="review.text"></textarea>
-   		<div>
-   		<button type="button" class="btn btn-default" ng-click="saveReview(product.id, review.text, review.title, review.rating)">Create A Review!</button>
-   	    </div>
-    </span>
+ 	<span>
+ 		<div ng-hide="!loggedInUserName"> 
+ 			<h5>Add a Review:</h5>
+      <input ng-model="review.title"></input>
+ 			<label>
+ 				<input type="radio" ng-model="review.rating" value="1">1</input>
+ 			</label>
+ 			<label>
+ 				<input type="radio" ng-model="review.rating" value="2">2</input>
+ 			</label>
+ 			<label>
+ 				<input type="radio" ng-model="review.rating" value="3">3</input>
+ 			</label>
+ 			<label>
+ 				<input type="radio" ng-model="review.rating" value="4">4</input>
+ 			</label>
+ 			<label>
+ 				<input type="radio" ng-model="review.rating" value="5">5</input>
+ 			</label>
+      <div>
+ 	      <textarea ng-model="review.text"></textarea>
+      </div>
+      <div>
+ 	      <button type="button" class="btn btn-default" ng-click="saveReview(product.id, review.text, review.title, review.rating)">Create A Review!</button>
+      </div>
+    </div>
+  </span>
 </section>
