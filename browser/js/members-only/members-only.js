@@ -7,7 +7,7 @@ app.config(function ($stateProvider) {
         // The following data.authenticate is read by an event listener
         // that controls access to this state. Refer to app.js.
         data: {
-            authenticate: true
+            authenticate: true,
             //add checking admin is true or not.
         }
     });

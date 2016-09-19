@@ -3,10 +3,10 @@ app.config(function($stateProvider) {
 		url: '/product/:id',
 		templateUrl: 'js/product/product.html',
 		controller: 'ProductCtrl'
-	})
-})
+	});
+});
 
-app.controller('ProductCtrl', function(Session, AuthService, $scope, $stateParams, ProductFactory, ProductsFactory, ReviewFactory, UserFactory) {
+app.controller('ProductCtrl', function(Session, AuthService, $scope, $stateParams, ProductFactory, ProductsFactory, ReviewFactory) {
 
 	ProductFactory.fetchOne($stateParams.id)
 	.then(function(product) {
@@ -25,25 +25,25 @@ app.controller('ProductCtrl', function(Session, AuthService, $scope, $stateParam
     .then(function(user){
       loggedInUser = user;
       $scope.loggedInUserName = user.name;
-    })
+    });
 
     $scope.saveReview = function(productId, reviewText, reviewTitle, reviewRating) {
-    	ReviewFactory.saveReview(productId, loggedInUser.id, reviewText, reviewTitle, reviewRating)
-    	.then(function(review) {
-    		$scope.newReview = review;
-    		$scope.review.title = "";
-    		$scope.review.text = "";
-    	})
-    }
+	ReviewFactory.saveReview(productId, loggedInUser.id, reviewText, reviewTitle, reviewRating)
+	.then(function(review) {
+		$scope.newReview = review;
+		$scope.review.title = '';
+		$scope.review.text = '';
+	});
+};
 
-	$scope.getTimes=function(n){
-    	return new Array(n);
+	$scope.getTimes = function(stringLength){
+     return new Array(stringLength);
 	};
 
 	$scope.addToCart = function(productId) {
 		if (!Session.user) {
 			if (!localStorage.getItem('cart')) {
-				var newcart = ProductsFactory.initializeCart(productId)
+				var newcart = ProductsFactory.initializeCart(productId);
 				localStorage.setItem('cart', JSON.stringify(newcart));
 			}
 			else {
@@ -56,7 +56,7 @@ app.controller('ProductCtrl', function(Session, AuthService, $scope, $stateParam
 			.then(function(productId) {
 			});
 		}
-	}
+	};
 
 });
 
@@ -70,7 +70,7 @@ app.factory('ProductFactory', function($http) {
 		});
 	};
 
-	returnObj.add = function(id){
+	returnObj.add = function(){
 		return $http.post('/api/product/')
 		.then(function(product){
 			return product.data;
@@ -80,14 +80,14 @@ app.factory('ProductFactory', function($http) {
 	returnObj.delete = function(id){
 		return $http.delete('/api/product/' + id)
 		.then(function(product){
-			return product.data
+			return product.data;
 		});
 	};
 
 	returnObj.edit = function(id, body){
 		return $http.put('/api/product/' + id, { description: body})
 		.then(function(product){
-			return product.data
+			return product.data;
 		});
 	};
 
