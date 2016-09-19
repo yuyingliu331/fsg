@@ -15,7 +15,7 @@ router.put('/:userId', function(req, res, next) {
 	.spread(function(cart) {
 		return cart.addProduct(req.body.productId)
 	})
-	.then(function(something){
+	.then(function(){
 		res.send(200);
 	})
 	.catch(next);
@@ -40,7 +40,7 @@ router.delete('/:cartId/:productId', function(req, res, next) {
 			cartId: req.params.cartId
 		}
 	})
-	.then(function(productInCart) {
+	.then(function() {
 		res.sendStatus(200)
 	})
 })
