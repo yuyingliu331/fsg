@@ -23,8 +23,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                     localStorage.clear();
                     $state.go('home');
                 });
-            };
-           
+            };   
 
             var setUser = function () {
                 AuthService.getLoggedInUser().then(function (user) {
