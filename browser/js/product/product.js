@@ -85,7 +85,6 @@ app.factory('ProductFactory', function($http) {
 	}
 
 	returnObj.edit = function(id, body){
-		console.log("product fatory", body);
 		return $http.put('/api/product/'+id, { description :body})
 		.then(function(product){
 			return product.data
