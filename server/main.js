@@ -11,7 +11,7 @@ var options = {
 var server;
 // Create a node server instance! cOoL!
 if (process.env.NODE_ENV === 'production') {
-    server = require('http').createServer(options);
+    server = require('http').createServer();
 } else {
     server = require('https').createServer(options);
 }
