@@ -1,11 +1,3 @@
-// app.config(function($stateProvider) {
-// 	$stateProvider.state('user', {
-// 		url: '/user',
-// 		templateUrl: 'js/user/user.html',
-// 		controller: 'UserCtrl'
-// 	})
-// })
-
 app.factory('UserFactory', function($http) {
 	var returnObj = {};
 	returnObj.findUser = function(userId) {
