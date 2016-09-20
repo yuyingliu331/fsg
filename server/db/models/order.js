@@ -8,5 +8,17 @@ module.exports = db.define('order', {
 	},
 	status: {
 		type: Sequelize.ENUM('processing', 'cancelled', 'completed')
-	}
+	},
+	products: {
+		type: Sequelize.ARRAY(Sequelize.JSON)
+	},
+	total: {
+		type: Sequelize.INTEGER
+	},
+	email: {
+        type: Sequelize.STRING,
+        validate: {
+            isEmail: true
+        }
+    }
 });

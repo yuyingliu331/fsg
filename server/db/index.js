@@ -16,7 +16,6 @@ Order.belongsTo(User);
 Cart.belongsTo(User);
 Cart.belongsToMany(Product, {through: 'CartProduct'});
 Product.belongsToMany(Cart, {through: 'CartProduct'});
-Cart.belongsTo(Order);
 Review.belongsTo(User);
 Review.belongsTo(Product);
 

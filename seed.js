@@ -105,6 +105,14 @@ var seedProducts = function () {
        category: ['fear'],
        photo: 'https://static.pexels.com/photos/27411/pexels-photo-27411-large.jpg',
        featured: true
+    },
+    {
+        name: 'Charming Conversation with a Stranger at a Coffeeshop',
+        price: 25,
+        description: 'Experience the simple pleasure of having a satisfying and intellectually stimulating conversation with a stranger at a coffeehouse.',
+        category: ['everyday experiences', 'social', 'happy'],
+        photo: 'https://static.pexels.com/photos/32059/pexels-photo-large.jpg',
+        featured: true
     }];
 
     var creatingProducts = products.map(function (productObj) {
@@ -121,6 +129,12 @@ var seedUsers = function () {
         email: 'mlsong@gmail.com',
         password: '1234',
         isAdmin: true
+    },
+    {
+        name: 'Elizabeth Jane Dielentheis',
+        email: 'e.dielentheis@comcast.net',
+        password: 'elizabeth',
+        isAdmin: false
     }];
 
     var creatingUsers = users.map(function(userObj){
@@ -133,19 +147,17 @@ var seedUsers = function () {
 var seedReviews = function (productIds, userIds) {
     var reviews = [{
        title: 'Great Memory for space travel',
-       text: 'This space travel memeory was great! I highly recommend it.',
+       text: 'This space travel memory was great! I highly recommend it.',
        stars: 4,
-       productId: 1,
+       productId: 9,
        userId: 1   /// To do: need to consider how to link userId with reviews
-        
-    },{
-       name: 'Love the Memory of Childhood',
-       title: 'Great Memory for space travel',
+    },
+    {
+       title: 'Love the Memory of Childhood',
        text: 'This memeory of childhood was awesome! I highly recommend it.',
        stars: 5,
-       productId: 1,
+       productId: 4,
        userId: 1
-
     }];
 
     var creatingReviews = reviews.map(function (reviewObj) {

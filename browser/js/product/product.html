@@ -15,7 +15,7 @@
         <div class="review">
             <span class="review-title">{{ review.user.name }} says: </span>
             <p>{{ review.title }}</p>
-            <p>{{ review.text }}
+            <p>{{ review.text }}<br>
               <span ng-repeat="star in getTimes(review.stars) track by $index">
                 <span class="star"> &#9733 </span>
               </span>

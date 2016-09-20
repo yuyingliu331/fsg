@@ -13,15 +13,15 @@
                 </div>
                 <div class="product-info">
                     <p><b><a ui-sref="product({id: product.id})">{{product.name}}</a></b></p>
-                    <p><b>Price: </b> {{product.price * qty | currency}}</p> {{product.productSum=product.price * qty;""}}
+                    <p><b>Price: </b> {{product.price * qty | currency}}</p> {{product.productSum=product.price * qty;""}} {{product.qty=qty;""}}
                     <p><b>Qty: </b> 
                     <select name="qty" ng-model="qty" ng-init="qty = qtyOptions[0]" ng-options="qtyOption for qtyOption in qtyOptions">
                     </select>
                     <button class="btn btn-danger" ng-click="removeFromCart(product.id, user.id)">remove from cart</button></p>
                 </div>
             </div>
-        <h2 class="total">Total: {{sum(cart) | currency}}</h2>
-        <center><button class="btn btn-success checkout" ui-sref="checkout">check out</button></center>
+        <h2 class="total" ng-if="cart.length">Total: {{sum(cart) | currency}}</h2>
+        <center><button class="btn btn-success checkout" ui-sref="checkout" ng-click="sendCheckout(cart)">check out</button></center>
         </div>
     </div>
 </section>

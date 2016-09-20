@@ -1,20 +1,31 @@
 <section class="products">
 	<ng-form name="editPage">
-
-	<div class="container">
-		<div class="col-sm-4" ng-repeat="product in products">
-		<div class="thumbnail">
-			<img ng-src="{{product.photo}}" class="portrait">
-		</div>
-		<a ui-sref="product({id: product.id})">{{product.name}}</a>
-		<p class="preview" ng-model="content" >{{product.preview}}</p>
-		<p>Price: {{product.price | currency}}</p>
-
-		<button type="button" class="add-to-cart btn btn-success" ng-click="delete(product.id)">Delete It</button>
-		<button type="button" class="add-to-cart btn btn-success" ng-click="add()">Add Similar product</button>
-
-
-		</div>
+	<div class="container-fluid"><p><b>Select A product to update: </b></p>
+		<select ng-options="product.name for product in products" class="col-sm-4" ng-model="product.selected">{{product.name}}</select>
 	</div>
-        </ng-form>
+	<div>
+        <a ui-sref="edit({id: product.selected.id})">
+        	<button type="button" class="btn btn-success" id="edit" ng-click="edit(product.selected.id)">Edit Product</button>
+        </a>
+			<button type="button" class="btn btn-success" id="delete" ng-click="delete(product.selected.id)"> Delete It</button>
+			<button type="button" class="btn btn-success" id="add" ng-click="add()">Add Similar product</button>
+		<br>
+	    </div>
+		    <div class="container-fluid">
+		    	<p>
+		    		<b>Select A user to update: </b>
+		    	</p>
+			    <select ng-options="user.name for user in users" class="col-sm-4" ng-model="user.selected">{{user.name}}
+			    </select>
+			</div>
+		<div>
+		    <div>
+	        <a ui-sref="edit({id: user.selected.id})">
+	        	<button type="button" class="btn btn-success" id="edit" ng-click="edit(user.selected.id)">Edit Product</button>
+	        </a>
+				<button type="button" class="btn btn-success" id="delete" ng-click="deleteUser(user.selected.id)">Delete User</button>
+				<button type="button" class="btn btn-success" id="updatePw" ng-click="resetPw(user.selected.id)">Reset Password</button>
+		    </div>
+	</div>
+    </ng-form>
 </section>
