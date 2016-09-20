@@ -30,9 +30,7 @@ module.exports = function (app, db) {
 
     // A POST /login route is created to handle login.
     app.post('/login', function (req, res, next) {
-
         var authCb = function (err, user) {
-
             if (err) return next(err);
 
             if (!user) {
@@ -69,5 +67,4 @@ module.exports = function (app, db) {
         })
         .catch(next)
     })
-
 };
