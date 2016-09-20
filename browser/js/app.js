@@ -1,10 +1,5 @@
 'use strict';
-<<<<<<< HEAD
-window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'stripe.checkout']);
-=======
-
 window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'angularPayments']);
->>>>>>> c80a377750fa16df2e2759544ad55a2e0704df4e
 
 app.config(function ($urlRouterProvider, $locationProvider) {
     window.Stripe.setPublishableKey('pk_test_S0oFek96V9yeMMQdI3aE0A65');
