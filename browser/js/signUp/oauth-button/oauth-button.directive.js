@@ -7,5 +7,5 @@ app.directive('oauthButton', function () {
       providerName: '@'
     },
     templateUrl: 'js/signUp/oauth-button/oauth-button.html'
-  }
+  };
 });
