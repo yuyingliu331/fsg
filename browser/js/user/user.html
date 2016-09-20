@@ -1,3 +1,7 @@
 <section id="user">
-	<p> this is a single user page</p>
+	<p> User Profile Update</p>
+	<form name="updateUser">
+		<p>User Name: {{ userName }}</p>
+	New Password: <input ng-model="updatePw"></input>
+	<button type="button" class="btn btn-success" id="submit" ng-click="updatePassword(updatePw)">Submit new password</button>
 </section>

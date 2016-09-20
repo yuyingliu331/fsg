@@ -37,7 +37,7 @@ app.controller('ProductCtrl', function(Session, AuthService, $scope, $stateParam
 };
 
 	$scope.getTimes = function(stringLength){
-	        return new Array(stringLength);
+	return new Array(stringLength);
 	};
 
 	$scope.addToCart = function(productId) {
@@ -71,21 +71,14 @@ app.factory('ProductFactory', function($http) {
 	};
 
 	returnObj.add = function(){
-		return $http.post('/api/product/')
+		return $http.post('/api/products/')
 		.then(function(product){
 			return product.data;
 		});
 	};
 
 	returnObj.delete = function(id){
-		return $http.delete('/api/product/' + id)
-		.then(function(product){
-			return product.data;
-		});
-	};
-
-	returnObj.edit = function(id, body){
-		return $http.put('/api/product/' + id, { description: body})
+		return $http.delete('/api/products/' + id)
 		.then(function(product){
 			return product.data;
 		});

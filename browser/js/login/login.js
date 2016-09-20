@@ -14,7 +14,7 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, ProductsFacto
     $scope.error = null;
 
     $scope.sendLogin = function (loginInfo) {
-
+        console.log("we are here!");
         $scope.error = null;
 
         AuthService.login(loginInfo)
