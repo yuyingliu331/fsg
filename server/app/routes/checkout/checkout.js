@@ -10,7 +10,7 @@ module.exports = router;
 router.post('/', function(req, res, next){
   var token = req.body.id;
   var charge = stripe.charges.create({
-    amount: 1000, // Amount in cents
+    amount: 1000, // Amount in cents, needs to be variable relating to cart total
     currency: 'usd',
     source: token,
     description: 'Example charge'
@@ -27,10 +27,12 @@ router.post('/', function(req, res, next){
 })
 
 router.post('/order', function(req, res, next) {
+  console.log(req.body)
   Order.create(req.body)
   .then(function(order){
+    //order needs to be connected to Cart before responding
     if(!order) res.sendStatus(500)
-    res.status(200).send(order)
+    res.sendStatus(200)
   })
   .catch(next)
 })

@@ -13,7 +13,6 @@ app.factory('checkoutFactory', function($http, $log){
       //and connect cart to order
       console.log('in checkoutFactory!')
       return $http.post('api/checkout/order', orderDetails)
-      .then(function(){})
       .catch($log.error)
     }
   }
