@@ -19,6 +19,14 @@ app.controller('CartCtrl', function($state, $scope, CartFactory, AuthService) {
 		$scope.user = user;
 	})
 
+	$scope.sum = function(arr) {
+		var sum = 0;
+		arr.forEach(function(num) {
+			sum += num.productSum;
+		});
+		return sum;
+	}
+
 	$scope.qtyOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 	$scope.removeFromCart = function(productId, userId) {
@@ -27,7 +35,6 @@ app.controller('CartCtrl', function($state, $scope, CartFactory, AuthService) {
 			return CartFactory.getCart();
 		})
 		.then(function(cart) {
-
 			$scope.cart = cart;
 		});
 	}
