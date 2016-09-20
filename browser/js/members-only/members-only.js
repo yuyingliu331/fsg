@@ -2,31 +2,32 @@ app.config(function ($stateProvider) {
 
     $stateProvider.state('membersOnly', {
         url: '/members-area',
-        template: '<img ng-repeat="item in stash" width="300" ng-src="{{ item }}" />',
-        controller: function ($scope, SecretStash) {
-            SecretStash.getStash().then(function (stash) {
-                $scope.stash = stash;
-            });
-        },
+        templateUrl: 'js/members-only/members-only.html',
+        controller: 'AdminController',
         // The following data.authenticate is read by an event listener
         // that controls access to this state. Refer to app.js.
         data: {
-            authenticate: true
+            authenticate: true,
+            //add checking admin is true or not.
         }
     });
 
 });
 
-app.factory('SecretStash', function ($http) {
+app.controller('AdminController', function($scope, ProductsFactory, ProductFactory, $state){
 
-    var getStash = function () {
-        return $http.get('/api/members/secret-stash').then(function (response) {
-            return response.data;
-        });
-    };
+    ProductsFactory.fetchAll()
+    .then(function(products) {
+        $scope.products = products;
+    });
 
-    return {
-        getStash: getStash
-    };
-
-});
+    $scope.delete = function(productId){
+        ProductFactory.delete(productId)
+        .then(function(){
+            $state.go('products');
+        })
+    }
+    $scope.add = function(){
+        $state.go('addNewProduct');
+    }
+})

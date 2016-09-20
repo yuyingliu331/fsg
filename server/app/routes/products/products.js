@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 	Product.findAll()
 	.then(function(products) {
 		res.json(products);
-	})
+	});
 });
 
 router.get('/:id', function(req, res, next) {
@@ -16,7 +16,7 @@ router.get('/:id', function(req, res, next) {
 	Product.findById(id)
 	.then(function(product) {
 		res.json(product);
-	})
+	});
 });
 
 router.get('/reviews/:id', function(req, res, next) {
@@ -24,7 +24,29 @@ router.get('/reviews/:id', function(req, res, next) {
 	Review.findAll({where: {productId: productId}, include: [{ model: User}]})
 	.then(function (reviews) {
 		res.json(reviews);
-	})
+	});
+});
+
+router.delete('/:id', function(req, res, next){
+  Product.findById(req.params.id)
+  .then(function(product){
+  product.destroy()
+  }).catch(next)
+
+})
+
+router.put('/:id', function(req, res, next){
+	Product.update(req.body, { where: { id: req.params.id }})
+	.then(function(product){
+		res.json(product)
+	}).catch(next)
+})
+
+router.post('/', function(req, res, next){
+	Product.create(req.body)
+	.then(function(product){
+		res.json(product)
+	}).catch(next)
 })
 
 module.exports = router;

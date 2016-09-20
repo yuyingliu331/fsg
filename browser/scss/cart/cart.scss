@@ -15,8 +15,12 @@
 	.container {
 	  display: flex;
 	  flex-direction: column;
-	  float: left;
+	  text-align: center;
+	  justify-content: center;
+	}
 
+	.total {
+		text-align: center;
 	}
 
 	.btn-danger {
@@ -24,7 +28,7 @@
 	}
 
 	.btn-success {
-		float: right;
+		text-align: center;
 		height: 60px;
 		width: 200px;
 		font-size: 28px;

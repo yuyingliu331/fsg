@@ -1,7 +1,13 @@
 'use strict';
+<<<<<<< HEAD
 window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'stripe.checkout']);
+=======
+
+window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'angularPayments']);
+>>>>>>> c80a377750fa16df2e2759544ad55a2e0704df4e
 
 app.config(function ($urlRouterProvider, $locationProvider) {
+    window.Stripe.setPublishableKey('pk_test_S0oFek96V9yeMMQdI3aE0A65');
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
     $locationProvider.html5Mode(true);
     // If we go to a URL that ui-router doesn't have registered, go to the "/" url.
@@ -12,9 +18,16 @@ app.config(function ($urlRouterProvider, $locationProvider) {
     });
 });
 
+// This app.run is for listening to errors broadcasted by ui-router, usually originating from resolves
+app.run(function ($rootScope) {
+    $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, thrownError) {
+        console.info(`The following error was thrown by ui-router while transitioning to state "${toState.name}". The origin of this error is probably a resolve function:`);
+        console.error(thrownError);
+    });
+});
+
 // This app.run is for controlling access to specific states.
 app.run(function ($rootScope, AuthService, $state) {
-
     // The given state requires an authenticated user.
     var destinationStateRequiresAuth = function (state) {
         return state.data && state.data.authenticate;
