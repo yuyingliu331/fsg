@@ -42,3 +42,37 @@
 	}
 
 }
+
+#product {
+	width: 80%;
+	margin: 0 auto;
+
+	.product-name {
+		font-weight: bold;
+		font-size: 20px;
+	}
+
+	.reviews {
+		width: 47%;
+		border: 1px solid #CCCCCC;
+		margin: 12px;
+		border-radius: 5px;
+		background-color: #FFFFFF;
+		padding: 13px;
+	}
+
+	.review-title {
+		font-weight: bold;
+	}
+
+	.enhance {
+		font-size: 20px;
+		margin: 0 auto;
+	}
+
+	.review {
+		border-bottom: 1px solid #CCCCCC;
+		margin: 8px 0 0 0;
+	}
+
+}
