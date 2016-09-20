@@ -5,7 +5,6 @@
     applications environment, along with NODE_ENV=production
 
  */
-console.log('=====\nDATABASE_URL IS:', process.env.DATABASE_URL)
 module.exports = {
     DATABASE_URI: process.env.DATABASE_URL,
     SESSION_SECRET: process.env.SESSION_SECRET,
