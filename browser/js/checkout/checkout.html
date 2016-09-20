@@ -1,24 +1,36 @@
-  <div>
-    <form stripe-form="stripeCallback">
-    <div>
-        <h2> Shipping Address </h2>
-            <div>
-                <input ng-model="name" placeholder="Full Name" />
-                <input ng-model="address_line1" placeholder="Address" />
-                <input ng-model="address_line2" placeholder="Apartment Number" />
-            </div>
-            <div>
-                <input ng-model="address_city" placeholder="City" />
-                <input ng-model="address_state" placeholder="State" />
-                <input ng-model="address_zip" placeholder="Zip Code" />
-            </div>
-        <h2> Payment Information </h2>
+  <section id="checkout">
+      <div class="col-sm-6"> 
+        <p class="buying">You are buying: </p>
+        <div class="col-sm-12 list" ng-repeat="product in cart">
+                <div class="thumbnail">
+                    <img ng-src="{{product.photo}}" class="portrait">
+                </div>
+                <div class="product-info">
+                    <p><b><a ui-sref="product({id: product.id})">{{product.name}}</a></b></p>
+                    <p><b>Price: </b> {{product.price | currency}}</p>
+                </div>
+        </div>
+      </div>
+      <div class="checkout-form col-sm-6">
+        <form stripe-form="stripeCallback">
+            <h2> Shipping Address </h2>
+                <div>
+                    <input ng-model="name" placeholder="Full Name" />
+                    <input ng-model="address_line1" placeholder="Address" />
+                    <input ng-model="address_line2" placeholder="Apartment Number" />
+                </div>
+                <div>
+                    <input ng-model="address_city" placeholder="City" />
+                    <input ng-model="address_state" placeholder="State" />
+                    <input ng-model="address_zip" placeholder="Zip Code" />
+                </div>
+            <h2> Payment Information </h2>
             <div>
                 <input ng-model="number" placeholder="Card Number" payments-format="card" payments-validate="card"/>
                 <input ng-model="expiry" placeholder="MM/YYYY" payments-format="expiry" payments-validate="expiry"/>
                 <input ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc"/>
-                <button type="submit" ng-click="createOrderObj()">Submit</button>
+                <button class="btn btn-primary" type="submit" ng-click="createOrderObj()">Submit</button>
             </div>
-    </div>
-    </form>
-  </div>
+        </form>
+      </div>
+  </section>

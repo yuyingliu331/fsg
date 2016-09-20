@@ -6,7 +6,7 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('CartCtrl', function($state, $scope, CartFactory, AuthService, $log) {
+app.controller('CartCtrl', function(CheckoutFactory, $state, $scope, CartFactory, AuthService, $log) {
     // is an array of product IDs for not logged in, when logged in becomes a promise for a cart object htat has an array of product objects
     // problem because if we're finding user by session.user, every time page refreshes it doessn't persist...
     CartFactory.getCart()
@@ -20,6 +20,10 @@ app.controller('CartCtrl', function($state, $scope, CartFactory, AuthService, $l
         $scope.user = user;
     })
     .catch($log.error);
+
+    $scope.sendCheckout = function(cart) {
+        CheckoutFactory.grabCart(cart);
+    };
 
     $scope.sum = function(arr) {
         var sum = 0;
