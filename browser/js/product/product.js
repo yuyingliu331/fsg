@@ -56,7 +56,9 @@ app.factory('ProductFactory', function($http, $log) {
     };
 
     returnObj.add = function() {
+
         return $http.post('/api/products/')
+
         .then(function(product) {
             return product.data;
         })
@@ -64,7 +66,9 @@ app.factory('ProductFactory', function($http, $log) {
     };
 
     returnObj.delete = function(id) {
+
         return $http.delete('/api/products/' + id)
+
         .then(function(product) {
             return product.data;
         })
