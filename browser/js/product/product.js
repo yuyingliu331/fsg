@@ -1,96 +1,85 @@
 app.config(function($stateProvider) {
-	$stateProvider.state('product', {
-		url: '/product/:id',
-		templateUrl: 'js/product/product.html',
-		controller: 'ProductCtrl'
-	});
+    $stateProvider.state('product', {
+        url: '/product/:id',
+        templateUrl: 'js/product/product.html',
+        controller: 'ProductCtrl'
+    });
 });
 
-app.controller('ProductCtrl', function(Session, AuthService, $scope, $stateParams, ProductFactory, ProductsFactory, ReviewFactory) {
+app.controller('ProductCtrl', function(CartFactory, $log, Session, AuthService, $scope, $stateParams, ProductFactory, ReviewFactory) {
+    var loggedInUser;
 
-	ProductFactory.fetchOne($stateParams.id)
-	.then(function(product) {
-		$scope.product = product;
-	});
-
-	ReviewFactory.fetchAll($stateParams.id)
-	.then(function(reviews) {
-    console.log(reviews);
-		$scope.reviews = reviews;
-	});
-
-	var loggedInUser;
-
-	AuthService.getLoggedInUser()
-    .then(function(user){
-      loggedInUser = user;
-      $scope.loggedInUserName = user.name;
+    ProductFactory.fetchOne($stateParams.id)
+    .then(function(product) {
+        $scope.product = product;
     });
 
+    ReviewFactory.fetchAll($stateParams.id)
+    .then(function(reviews) {
+        $scope.reviews = reviews;
+    })
+    .catch($log.error);
+
+    AuthService.getLoggedInUser()
+    .then(function(user) {
+        loggedInUser = user;
+        $scope.loggedInUserName = user.name;
+    })
+        .catch($log.error);
+
     $scope.saveReview = function(productId, reviewText, reviewTitle, reviewRating) {
-	ReviewFactory.saveReview(productId, loggedInUser.id, reviewText, reviewTitle, reviewRating)
-	.then(function(review) {
-		$scope.newReview = review;
-		$scope.review.title = '';
-		$scope.review.text = '';
-	});
-};
+        ReviewFactory.saveReview(productId, loggedInUser.id, reviewText, reviewTitle, reviewRating)
+        .then(function(review) {
+            $scope.newReview = review;
+            $scope.review.title = '';
+            $scope.review.text = '';
+        })
+        .catch($log.error);
+    };
 
-	$scope.getTimes = function(stringLength){
-	        return new Array(stringLength);
-	};
+    $scope.getTimes = function(stringLength) {
+        return new Array(stringLength);
+    };
 
-	$scope.addToCart = function(productId) {
-		if (!Session.user) {
-			if (!localStorage.getItem('cart')) {
-				var newcart = ProductsFactory.initializeCart(productId);
-				localStorage.setItem('cart', JSON.stringify(newcart));
-			}
-			else {
-				var cart = ProductsFactory.updateCart(productId);
-				localStorage.setItem('cart', JSON.stringify(cart));
-			}
-		}
-		else {
-			ProductsFactory.addToCart(productId)
-			.then(function(productId) {
-			});
-		}
-	};
-
+    $scope.addToCart = CartFactory.routeToAdderFunc;
 });
 
-app.factory('ProductFactory', function($http) {
-	var returnObj = {};
+app.factory('ProductFactory', function($http, $log) {
+    var returnObj = {};
 
-	returnObj.fetchOne = function(id) {
-		return $http.get('/api/products/' + id)
-		.then(function(product) {
-			return product.data;
-		});
-	};
+    returnObj.fetchOne = function(id) {
+        return $http.get('/api/products/' + id)
+        .then(function(product) {
+            return product.data;
+        })
+        .catch($log.error);
+    };
 
-	returnObj.add = function(){
-		return $http.post('/api/product/')
-		.then(function(product){
-			return product.data;
-		});
-	};
+    returnObj.add = function() {
+        return $http.post('/api/product/')
+        .then(function(product) {
+            return product.data;
+        })
+        .catch($log.error);
+    };
 
-	returnObj.delete = function(id){
-		return $http.delete('/api/product/' + id)
-		.then(function(product){
-			return product.data;
-		});
-	};
+    returnObj.delete = function(id) {
+        return $http.delete('/api/product/' + id)
+        .then(function(product) {
+            return product.data;
+        })
+        .catch($log.error);
+    };
 
-	returnObj.edit = function(id, body){
-		return $http.put('/api/product/' + id, { description: body})
-		.then(function(product){
-			return product.data;
-		});
-	};
+    returnObj.edit = function(id, body) {
+        return $http.put('/api/product/' + id, {
+                description: body
+            })
+        .then(function(product) {
+            return product.data;
+        })
+        .catch($log.error);
+    };
 
     return returnObj;
 });
-
