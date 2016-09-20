@@ -147,7 +147,6 @@ app.factory('CartFactory', function(AuthService, Session, $http, $q, $log, $stat
 
     returnObj.migrateCart = function() {
         var cart = JSON.parse(localStorage.getItem('cart'));
-        console.log("cart thing", cart);
         if (cart) {
             cart.forEach(function(product) {
                 returnObj.addToCart(product);
