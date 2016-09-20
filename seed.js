@@ -69,7 +69,7 @@ var seedProducts = function () {
     {
         name: 'Pull an all-nighter!',
         price: 5,
-        description: 'You are a student during the week of final exams. As per customary, you’ve procrastinated a little bit too much for a term paper you’ve been dreading. It is finally the day before the paper is due, and you’ve written a title and an introductory paragraph. The clock strikes 9pm and you are painfully reminded of how the next morning is the due date. Join us to re-live this is crucial rite of passage.',
+        description: 'You are a student during the week of final exams. As per customary, you’ve procrastinated a little bit too much for a term paper you’ve been dreading. It is finally the day before the paper is due, and you’ve written a title and an introductory paragraph. The clock strikes 9pm and you are painfully reminded of how the next morning is the due date. Join us to re-live this is a crucial rite of passage.',
         category: ['sadness', 'nostalgia'],
         photo: 'https://hd.unsplash.com/photo-1444384851176-6e23071c6127',
         featured: true
@@ -101,7 +101,7 @@ var seedProducts = function () {
     {
        name: 'Breaking up with a girl',
        price: 450,
-       description: 'This is the day. This may be the armageddon you’ve been wanting to avoid, the day of the doom that you’ve known to be coming all along. Today you are breaking up with your girlfriend. We hope that this memory doesn\'t destroy you.',
+       description: 'This is the day. This is the day that you know would come all along. Today you are breaking up with your girlfriend. We hope that this memory doesn\'t destroy you.',
        category: ['fear'],
        photo: 'https://static.pexels.com/photos/27411/pexels-photo-27411-large.jpg',
        featured: true

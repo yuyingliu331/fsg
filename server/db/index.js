@@ -6,7 +6,6 @@ module.exports = db;
 var User = require('./models/user');
 var Order = require('./models/order');
 var Cart = require('./models/cart');
-var Payment = require('./models/payment');
 var Product = require('./models/products');
 var Review = require('./models/reviews');
 
@@ -17,7 +16,7 @@ Order.belongsTo(User);
 Cart.belongsTo(User);
 Cart.belongsToMany(Product, {through: 'CartProduct'});
 Product.belongsToMany(Cart, {through: 'CartProduct'});
-Payment.belongsTo(Order);
+Cart.belongsTo(Order);
 Review.belongsTo(User);
 Review.belongsTo(Product);
 
