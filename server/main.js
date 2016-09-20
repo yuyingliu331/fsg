@@ -8,8 +8,13 @@ var options = {
   cert: fs.readFileSync('./cert.pem')
 };
 
+var server;
 // Create a node server instance! cOoL!
-var server = require('https').createServer(options);
+if (process.env.NODE_ENV === 'production') {
+    server = require('http').createServer(options);
+} else {
+    server = require('https').createServer(options);
+}
 
 var createApplication = function () {
     var app = require('./app')(db);
