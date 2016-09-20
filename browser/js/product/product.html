@@ -2,11 +2,11 @@
   <div class="thumbnail">
     <img src="{{product.photo}}" class="portrait">
   </div>
-	<a ui-sref="product({id: product.id})">{{product.name}}</a>
+  <a ui-sref="product({id: product.id})">{{product.name}}</a>
 	<p class="preview">{{product.description}}</p>
 	<p>Price: {{product.price | currency}}</p>
 	<button type="button" class="add-to-cart btn btn-success" ng-click="addToCart(product.id)">add to cart</button>
-	<p>Customer Reviews:</p>
+	<p id="customerReview">Customer Reviews:</p>
   <div ng-repeat="review in reviews">
     <span>  {{ review.user.name }} : </span>
     <p>{{ review.title }}</p>

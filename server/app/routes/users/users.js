@@ -30,11 +30,9 @@ router.delete('/:id', function(req, res, next){
 });
 
 router.put('/:id', function(req, res, next){
-	console.log('req.body', req.body);
 	var id = req.params.id;
 	User.update(req.body, {where: {id: id}})
 	.then(function(){
-		console.log('router: after User.update');
 		res.sendStatus(200);
 	})
 	.catch(next);

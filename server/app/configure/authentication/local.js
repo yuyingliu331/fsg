@@ -31,7 +31,6 @@ module.exports = function (app, db) {
     // A POST /login route is created to handle login.
     app.post('/login', function (req, res, next) {
         var authCb = function (err, user) {
-            console.log("user in router", user);
             if (err) return next(err);
 
             if (!user) {
@@ -68,5 +67,15 @@ module.exports = function (app, db) {
         })
         .catch(next)
     })
-
+    // This is where the password will get updated
+    // app.put('/update/:id', function(req, res, next){
+    //     console.log("is user in router?", req.body);
+    //     User.update(req.body, {where: {id: req.params.id}})
+    //     .then(function(user){
+    //         res.status(200).send({
+    //             user: user.sanitize()
+    //         });
+    //     })
+    //     .catch(next);
+    // });
 };

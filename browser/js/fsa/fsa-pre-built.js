@@ -95,7 +95,6 @@
         };
 
         this.login = function (credentials) {
-            console.log("this is in login and credentials", credentials);
             return $http.post('/login', credentials)
                 .then(onSuccessfulLogin)
                 .catch(function () {

@@ -31,9 +31,9 @@ app.factory('UserFactory', function($http) {
 
 	returnObj.updatePassword = function(newPw, id){
 
-		return $http.put('/api/users/' + id, { password: newPw })
-		.then(function(thing){
-			//TODO
+		return $http.put('/update/' + id, { password: newPw })
+		.then(function(user){
+			console.log("is user in factory?", user);
 			return user.data;
 		})
 	}

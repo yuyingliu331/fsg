@@ -15,7 +15,6 @@ app.controller('ProductCtrl', function(Session, AuthService, $scope, $stateParam
 
 	ReviewFactory.fetchAll($stateParams.id)
 	.then(function(reviews) {
-    console.log(reviews);
 		$scope.reviews = reviews;
 	});
 
