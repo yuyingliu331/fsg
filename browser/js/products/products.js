@@ -8,7 +8,7 @@ app.config(function($stateProvider) {
     });
 });
 
-app.factory('ProductsFactory', function(Session, $http, $log) {
+app.factory('ProductsFactory', function($http, $log) {
     var returnObj = {};
 
     returnObj.cart = {};
@@ -24,7 +24,7 @@ app.factory('ProductsFactory', function(Session, $http, $log) {
     return returnObj;
 });
 
-app.controller('ProductsCtrl', function(ProductCategories, CartFactory, $log, Session, AuthService, AUTH_EVENTS, $stateParams, $scope, ProductFactory, ProductsFactory) {
+app.controller('ProductsCtrl', function(ProductCategories, CartFactory, $log, $stateParams, $scope, ProductsFactory) {
     $scope.loggedIn = false;
 
     ProductsFactory.fetchAll()
