@@ -4,4 +4,3 @@ app.config(function($stateProvider) {
 		templateUrl: 'js/checkout/checkout.html',
     controller: 'checkoutCtrl'
   })
-})

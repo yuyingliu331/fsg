@@ -2,6 +2,7 @@
 
 var router = require('express').Router();
 var stripe = require('stripe')('sk_test_awkht6sVaMH780dpIAF7xQ0z');
+
 var db = require('../../../db/index.js');
 var Cart = db.model('cart');
 var Order = db.model('order');
